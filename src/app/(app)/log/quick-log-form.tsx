@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { DatePicker } from "@/components/ui/date-picker";
 import { SparkleIcon } from "@/components/app/icons";
 
 import { logPrediction, type LogPredictionState } from "./actions";
@@ -257,14 +258,12 @@ export function QuickLogForm({
           <Label htmlFor="check_in_date" className="text-sm font-medium">
             Check in on
           </Label>
-          <Input
+          <DatePicker
             id="check_in_date"
             name="check_in_date"
-            type="date"
-            required
             value={checkInDate}
-            onChange={(e) => setCheckInDate(e.target.value)}
-            className="h-10"
+            onChange={setCheckInDate}
+            minDate={new Date().toISOString().slice(0, 10)}
           />
           <p className="text-xs text-muted-foreground">
             Default 30 days. You&apos;ll be reminded then.

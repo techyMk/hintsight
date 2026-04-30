@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { DatePicker } from "@/components/ui/date-picker";
 import { ArrowRightIcon, SparkleIcon } from "@/components/app/icons";
 
 const STORAGE_KEY = "hintsight:demo-prediction";
@@ -17,10 +18,23 @@ type SavedDemo = {
   savedAt: string;
 };
 
+function todayISO() {
+  const d = new Date();
+  return [
+    d.getFullYear(),
+    String(d.getMonth() + 1).padStart(2, "0"),
+    String(d.getDate()).padStart(2, "0"),
+  ].join("-");
+}
+
 function defaultCheckInDate() {
   const d = new Date();
   d.setDate(d.getDate() + 30);
-  return d.toISOString().slice(0, 10);
+  return [
+    d.getFullYear(),
+    String(d.getMonth() + 1).padStart(2, "0"),
+    String(d.getDate()).padStart(2, "0"),
+  ].join("-");
 }
 
 function confidenceLabel(c: number) {
@@ -163,13 +177,11 @@ export function TryItDemo() {
           >
             Check in on
           </label>
-          <input
+          <DatePicker
             id="demo-date"
-            type="date"
             value={checkInDate}
-            min={new Date().toISOString().slice(0, 10)}
-            onChange={(e) => setCheckInDate(e.target.value)}
-            className="h-10 w-full rounded-lg border border-input bg-background px-3 text-sm text-foreground focus:border-ring focus:ring-3 focus:ring-ring/40 outline-none transition-colors"
+            onChange={setCheckInDate}
+            minDate={todayISO()}
           />
         </div>
         <Button
