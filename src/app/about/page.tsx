@@ -55,7 +55,7 @@ export default function AboutPage() {
               width={64}
               height={64}
               priority
-              className="size-16 rounded-2xl object-cover flex-shrink-0 ring-1 ring-border"
+              className="size-16 rounded-full object-cover flex-shrink-0 ring-1 ring-border"
             />
             <div className="flex-1 space-y-3">
               <p>
