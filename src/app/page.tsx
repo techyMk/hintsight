@@ -113,6 +113,12 @@ function Nav() {
           >
             Changelog
           </Link>
+          <Link
+            href="/about"
+            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            About
+          </Link>
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
