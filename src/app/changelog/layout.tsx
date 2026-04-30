@@ -5,6 +5,7 @@ import { Wordmark } from "@/components/brand/logo";
 import { Footer } from "@/components/brand/footer";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { PublicNavLink } from "@/components/app/public-nav-link";
 
 export default function ChangelogLayout({
   children,
@@ -19,24 +20,10 @@ export default function ChangelogLayout({
             <Wordmark />
           </Link>
           <nav className="hidden sm:flex items-center gap-1 text-sm">
-            <Link
-              href="/"
-              className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/docs"
-              className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Docs
-            </Link>
-            <Link
-              href="/changelog"
-              className="px-3 py-2 text-foreground font-medium"
-            >
-              Changelog
-            </Link>
+            <PublicNavLink href="/">Home</PublicNavLink>
+            <PublicNavLink href="/docs">Docs</PublicNavLink>
+            <PublicNavLink href="/changelog">Changelog</PublicNavLink>
+            <PublicNavLink href="/about">About</PublicNavLink>
           </nav>
           <div className="flex items-center gap-2">
             <ThemeToggle />

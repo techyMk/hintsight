@@ -83,6 +83,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/icon.webp", type: "image/webp" },
+    ],
+    shortcut: "/icon.webp",
+    apple: "/icon.webp",
+  },
 };
 
 export default function RootLayout({

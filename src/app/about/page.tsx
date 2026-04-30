@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -48,9 +49,14 @@ export default function AboutPage() {
 
         <Section title="Who built this">
           <div className="flex items-start gap-5">
-            <div className="size-16 rounded-2xl bg-foreground text-background flex items-center justify-center text-2xl font-semibold flex-shrink-0">
-              M
-            </div>
+            <Image
+              src="/icon.webp"
+              alt="techyMk"
+              width={64}
+              height={64}
+              priority
+              className="size-16 rounded-2xl object-cover flex-shrink-0 ring-1 ring-border"
+            />
             <div className="flex-1 space-y-3">
               <p>
                 Hintsight is built by{" "}

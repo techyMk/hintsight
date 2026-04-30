@@ -8,6 +8,7 @@ import { CalibrationArc } from "@/components/brand/calibration-arc";
 import { Footer } from "@/components/brand/footer";
 import { TryItDemo } from "@/components/landing/try-it-demo";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { PublicNavLink } from "@/components/app/public-nav-link";
 import { getPublicStats, type PublicStats } from "@/lib/stats";
 
 const APP_JSON_LD = {
@@ -89,36 +90,11 @@ function Nav() {
           <Wordmark />
         </Link>
         <nav className="hidden md:flex items-center gap-1 text-sm">
-          <Link
-            href="#try-it"
-            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Try it
-          </Link>
-          <Link
-            href="#how"
-            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            How it works
-          </Link>
-          <Link
-            href="/docs"
-            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Docs
-          </Link>
-          <Link
-            href="/changelog"
-            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Changelog
-          </Link>
-          <Link
-            href="/about"
-            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            About
-          </Link>
+          <PublicNavLink href="#try-it">Try it</PublicNavLink>
+          <PublicNavLink href="#how">How it works</PublicNavLink>
+          <PublicNavLink href="/docs">Docs</PublicNavLink>
+          <PublicNavLink href="/changelog">Changelog</PublicNavLink>
+          <PublicNavLink href="/about">About</PublicNavLink>
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />

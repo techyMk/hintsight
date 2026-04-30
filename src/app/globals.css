@@ -151,6 +151,18 @@
   }
   html {
     @apply font-sans;
+    /* Smooth scroll for anchor links (#try-it, #how, #why...).
+       Honors prefers-reduced-motion automatically — Tailwind compiles
+       the @media query around the rule. */
+    scroll-behavior: smooth;
+    /* Account for the sticky 56px-tall nav so anchored sections aren't
+       hidden under it. */
+    scroll-padding-top: 4.5rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
   ::selection {
     background: oklch(0.85 0.05 250);
