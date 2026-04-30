@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Wordmark } from "@/components/brand/logo";
+import { Footer } from "@/components/brand/footer";
 
 export const metadata = {
   title: "Not found · Hintsight",
@@ -65,11 +66,9 @@ export default function NotFound() {
         </div>
       </main>
 
-      <footer className="relative z-10 w-full">
-        <div className="max-w-md mx-auto px-6 py-6 text-center text-xs text-muted-foreground/70 font-mono">
-          © {new Date().getFullYear()} Hintsight
-        </div>
-      </footer>
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   );
 }

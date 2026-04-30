@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 import { Wordmark } from "@/components/brand/logo";
+import { Footer } from "@/components/brand/footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { NavLink } from "@/components/app/nav-link";
@@ -133,6 +134,7 @@ export default async function AppLayout({
         {/* Main content */}
         <main className="min-w-0 pb-24 lg:pb-8">{children}</main>
       </div>
+      <Footer />
     </div>
   );
 }

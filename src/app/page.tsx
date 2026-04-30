@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { LogoMark, Wordmark } from "@/components/brand/logo";
 import { CalibrationArc } from "@/components/brand/calibration-arc";
+import { Footer } from "@/components/brand/footer";
 
 export default function Home() {
   return (
@@ -550,36 +551,3 @@ function CTA() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="px-6 py-12 border-t border-border/60 mt-auto bg-background">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-        <div>
-          <Wordmark className="text-foreground" />
-          <p className="mt-2 text-sm text-muted-foreground max-w-xs">
-            A scoreboard for your judgment.
-          </p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-6 text-sm">
-          <Link href="#how" className="text-muted-foreground hover:text-foreground">
-            How it works
-          </Link>
-          <Link href="/docs" className="text-muted-foreground hover:text-foreground">
-            Docs
-          </Link>
-          <a
-            href="https://github.com/techyMk"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground"
-          >
-            GitHub
-          </a>
-        </div>
-        <p className="text-xs text-muted-foreground/70 font-mono">
-          © {new Date().getFullYear()} Hintsight · Built by techyMk
-        </p>
-      </div>
-    </footer>
-  );
-}

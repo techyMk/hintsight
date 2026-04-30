@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Show } from "@clerk/nextjs";
 
 import { Wordmark } from "@/components/brand/logo";
+import { Footer } from "@/components/brand/footer";
 import { Button } from "@/components/ui/button";
 
 export default function DocsLayout({
@@ -60,7 +61,8 @@ export default function DocsLayout({
           </div>
         </div>
       </header>
-      {children}
+      <div className="flex-1">{children}</div>
+      <Footer />
     </div>
   );
 }

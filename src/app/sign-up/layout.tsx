@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Wordmark } from "@/components/brand/logo";
+import { Footer } from "@/components/brand/footer";
 
 export default function SignUpLayout({
   children,
@@ -30,14 +31,9 @@ export default function SignUpLayout({
         <div className="w-full max-w-md">{children}</div>
       </main>
 
-      <footer className="relative z-10 w-full">
-        <div className="max-w-md mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
-          <span className="font-mono">© {new Date().getFullYear()} Hintsight</span>
-          <span className="font-mono uppercase tracking-widest">
-            A scoreboard for your judgment
-          </span>
-        </div>
-      </footer>
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   );
 }
