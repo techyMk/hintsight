@@ -8,6 +8,7 @@ import { Footer } from "@/components/brand/footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { NavLink } from "@/components/app/nav-link";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import {
   HomeIcon,
   PencilIcon,
@@ -43,6 +44,7 @@ export default async function AppLayout({
               <PlusIcon />
               <span>New prediction</span>
             </Button>
+            <ThemeToggle />
             <UserButton
               appearance={{
                 elements: {

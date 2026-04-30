@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "sonner";
+
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { ToasterClient } from "@/components/theme/toaster-client";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -90,23 +92,14 @@ export default function RootLayout({
     <ClerkProvider>
       <html
         lang="en"
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
       >
         <body className="min-h-full flex flex-col">
-          {children}
-          <Toaster
-            position="bottom-right"
-            theme="system"
-            toastOptions={{
-              classNames: {
-                toast:
-                  "!bg-card !text-foreground !border !border-border !rounded-xl !shadow-[0_8px_30px_-12px_rgba(0,0,0,0.18)]",
-                description: "!text-muted-foreground",
-                actionButton:
-                  "!bg-primary !text-primary-foreground !rounded-md !px-2 !py-1 !text-xs",
-              },
-            }}
-          />
+          <ThemeProvider>
+            {children}
+            <ToasterClient />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

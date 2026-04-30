@@ -4,6 +4,7 @@ import { Show } from "@clerk/nextjs";
 import { Wordmark } from "@/components/brand/logo";
 import { Footer } from "@/components/brand/footer";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export default function DocsLayout({
   children,
@@ -32,6 +33,7 @@ export default function DocsLayout({
             </Link>
           </nav>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <Show when="signed-out">
               <Button
                 render={<Link href="/sign-in" />}

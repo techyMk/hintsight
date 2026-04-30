@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Wordmark } from "@/components/brand/logo";
 import { Footer } from "@/components/brand/footer";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export default function SignInLayout({
   children,
@@ -24,10 +25,11 @@ function AuthShell({ children }: { children: React.ReactNode }) {
       />
 
       <header className="relative z-10 w-full">
-        <div className="max-w-md mx-auto px-6 h-16 flex items-center">
+        <div className="max-w-md mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" aria-label="Hintsight home">
             <Wordmark />
           </Link>
+          <ThemeToggle />
         </div>
       </header>
 

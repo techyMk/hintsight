@@ -7,6 +7,7 @@ import { LogoMark, Wordmark } from "@/components/brand/logo";
 import { CalibrationArc } from "@/components/brand/calibration-arc";
 import { Footer } from "@/components/brand/footer";
 import { TryItDemo } from "@/components/landing/try-it-demo";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const APP_JSON_LD = {
   "@context": "https://schema.org",
@@ -106,6 +107,7 @@ function Nav() {
           </Link>
         </nav>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <Show when="signed-out">
             <Button render={<Link href="/sign-in" />} nativeButton={false} variant="ghost" size="sm">
               Sign in
