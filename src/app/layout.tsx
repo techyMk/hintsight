@@ -21,10 +21,29 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+function resolveMetadataBase(): URL {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) {
+    try {
+      return new URL(explicit);
+    } catch {
+      // Fall through to Vercel default if the env var is malformed.
+    }
+  }
+  // Vercel sets VERCEL_URL automatically (host only, no protocol).
+  const vercelHost = process.env.VERCEL_URL?.trim();
+  if (vercelHost) {
+    try {
+      return new URL(`https://${vercelHost}`);
+    } catch {
+      // Fall through to localhost.
+    }
+  }
+  return new URL("http://localhost:3000");
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ),
+  metadataBase: resolveMetadataBase(),
   title: {
     default: "Hintsight — a scoreboard for your judgment",
     template: "%s · Hintsight",
