@@ -6,19 +6,75 @@ import { Badge } from "@/components/ui/badge";
 import { LogoMark, Wordmark } from "@/components/brand/logo";
 import { CalibrationArc } from "@/components/brand/calibration-arc";
 import { Footer } from "@/components/brand/footer";
+import { TryItDemo } from "@/components/landing/try-it-demo";
+
+const APP_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Hintsight",
+  description:
+    "A scoreboard for your judgment. Log a prediction; on the date you said you'd know by, Hintsight asks what really happened. Calibrate your judgment over time.",
+  applicationCategory: "ProductivityApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  author: {
+    "@type": "Person",
+    name: "techyMk",
+    url: "https://techymk.vercel.app/",
+  },
+};
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 bg-background font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(APP_JSON_LD) }}
+      />
       <Nav />
       <Hero />
+      <TryItSection />
       <SocialProofStrip />
       <HowItWorks />
       <ProductPreview />
       <WhyDifferent />
+      <ResearchSection />
       <CTA />
       <Footer />
     </div>
+  );
+}
+
+function TryItSection() {
+  return (
+    <section
+      id="try-it"
+      className="relative px-6 py-20 sm:py-24 border-t border-border/60 bg-muted/20"
+    >
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-10">
+          <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+            Try it · 30 seconds · No signup
+          </p>
+          <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-foreground text-balance">
+            Make a prediction. We&apos;ll check in with{" "}
+            <span className="italic font-serif font-normal text-brand">
+              future-you
+            </span>
+            .
+          </h2>
+          <p className="mt-3 text-muted-foreground max-w-xl mx-auto text-pretty">
+            Type something you actually believe. Pick a date you&apos;ll know
+            by. We&apos;ll show you the loop without asking for an email.
+          </p>
+        </div>
+        <TryItDemo />
+      </div>
+    </section>
   );
 }
 
@@ -31,16 +87,16 @@ function Nav() {
         </Link>
         <nav className="hidden md:flex items-center gap-1 text-sm">
           <Link
+            href="#try-it"
+            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Try it
+          </Link>
+          <Link
             href="#how"
             className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             How it works
-          </Link>
-          <Link
-            href="#why"
-            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Why it&apos;s different
           </Link>
           <Link
             href="/docs"
@@ -86,7 +142,7 @@ function Hero() {
         <div className="flex flex-col items-center text-center">
           <Badge variant="outline" className="mb-6 text-xs">
             <span className="size-1.5 rounded-full bg-brand" />
-            Now in private beta
+            Free · Open source · Built on calibration research
           </Badge>
 
           <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight text-foreground leading-[0.98] text-balance">
@@ -490,6 +546,83 @@ function WhyDifferent() {
                 {p.body}
               </p>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ResearchSection() {
+  const quotes = [
+    {
+      text: "What separates the best forecasters from the rest isn't a higher IQ — it's a habit of revising estimates against feedback.",
+      source: "Philip Tetlock",
+      context: "Superforecasting (2015)",
+    },
+    {
+      text: "We are blind to our own blindness. We have very little idea of how little we know.",
+      source: "Daniel Kahneman",
+      context: "Thinking, Fast and Slow",
+    },
+    {
+      text: "Most decisions are bets in disguise. Treat them like bets and you start asking the right questions.",
+      source: "Annie Duke",
+      context: "Thinking in Bets",
+    },
+  ];
+
+  return (
+    <section
+      id="research"
+      className="relative px-6 py-24 sm:py-28 border-t border-border/60"
+    >
+      <div className="max-w-6xl mx-auto">
+        <div className="max-w-2xl">
+          <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+            Built on real forecasting research
+          </p>
+          <h2 className="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight text-foreground text-balance">
+            Calibration isn&apos;t a hack.
+            <br />
+            <span className="italic font-serif font-normal text-brand">
+              It&apos;s a measurable skill.
+            </span>
+          </h2>
+          <p className="mt-5 text-muted-foreground text-pretty max-w-xl">
+            Three decades of research show that people who track their
+            predictions get sharper. Hintsight is the simplest tool to actually
+            do that for yourself.
+          </p>
+        </div>
+        <div className="mt-14 grid md:grid-cols-3 gap-5">
+          {quotes.map((q) => (
+            <figure
+              key={q.source}
+              className="rounded-2xl border border-border bg-card p-6 sm:p-7 flex flex-col"
+            >
+              <svg
+                className="text-foreground/15 mb-4"
+                width="28"
+                height="22"
+                viewBox="0 0 40 32"
+                fill="currentColor"
+                aria-hidden
+              >
+                <path d="M0 32V20C0 9 6 2 16 0v6c-5 2-8 6-8 12h8v14H0zm22 0V20c0-11 6-18 16-20v6c-5 2-8 6-8 12h8v14H22z" />
+              </svg>
+              <blockquote className="text-base text-foreground leading-relaxed flex-1 text-pretty">
+                {q.text}
+              </blockquote>
+              <figcaption className="mt-5 pt-4 border-t border-border">
+                <div className="text-sm font-medium text-foreground">
+                  {q.source}
+                </div>
+                <div className="text-xs text-muted-foreground font-mono">
+                  {q.context}
+                </div>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>
