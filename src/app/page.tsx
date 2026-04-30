@@ -8,6 +8,7 @@ import { CalibrationArc } from "@/components/brand/calibration-arc";
 import { Footer } from "@/components/brand/footer";
 import { TryItDemo } from "@/components/landing/try-it-demo";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { getPublicStats, type PublicStats } from "@/lib/stats";
 
 const APP_JSON_LD = {
   "@context": "https://schema.org",
@@ -29,7 +30,8 @@ const APP_JSON_LD = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const stats = await getPublicStats();
   return (
     <div className="flex flex-col flex-1 bg-background font-sans">
       <script
@@ -37,7 +39,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(APP_JSON_LD) }}
       />
       <Nav />
-      <Hero />
+      <Hero stats={stats} />
       <TryItSection />
       <SocialProofStrip />
       <HowItWorks />
@@ -105,6 +107,12 @@ function Nav() {
           >
             Docs
           </Link>
+          <Link
+            href="/changelog"
+            className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Changelog
+          </Link>
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
@@ -127,7 +135,7 @@ function Nav() {
   );
 }
 
-function Hero() {
+function Hero({ stats }: { stats: PublicStats }) {
   return (
     <section className="relative overflow-hidden">
       {/* Decorative grid background */}
@@ -198,6 +206,25 @@ function Hero() {
           <p className="mt-6 text-xs font-mono uppercase tracking-widest text-muted-foreground/70">
             Free, forever · No credit card · Open source
           </p>
+
+          {stats.totalPredictions > 0 && (
+            <div className="mt-10 flex items-center gap-8 sm:gap-12 text-xs font-mono uppercase tracking-widest text-muted-foreground/80">
+              <Stat
+                value={stats.totalPredictions.toLocaleString()}
+                label="predictions logged"
+              />
+              <Stat
+                value={stats.totalReviewed.toLocaleString()}
+                label="reckoned with"
+              />
+              <Stat
+                value={stats.totalForecasters.toLocaleString()}
+                label={
+                  stats.totalForecasters === 1 ? "forecaster" : "forecasters"
+                }
+              />
+            </div>
+          )}
         </div>
 
         {/* Hero visual */}
@@ -259,6 +286,17 @@ function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <span className="text-2xl sm:text-3xl font-semibold tracking-tight tabular-nums text-foreground normal-case">
+        {value}
+      </span>
+      <span>{label}</span>
+    </div>
   );
 }
 

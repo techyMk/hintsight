@@ -25,6 +25,12 @@ export function Footer() {
           >
             Docs
           </Link>
+          <Link
+            href="/changelog"
+            className="text-muted-foreground hover:text-foreground"
+          >
+            Changelog
+          </Link>
           <a
             href="https://github.com/techyMk"
             target="_blank"

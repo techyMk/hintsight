@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
 import { QuickLogForm } from "./quick-log-form";
 
 export const metadata = {
@@ -34,49 +33,6 @@ export default function LogPage() {
 
       <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
         <QuickLogForm defaultCheckInDate={defaultCheckInDate()} />
-      </div>
-
-      <Examples />
-    </div>
-  );
-}
-
-function Examples() {
-  const examples = [
-    {
-      tag: "deals",
-      text: "This client signs the contract by Friday. ~70%.",
-    },
-    {
-      tag: "hiring",
-      text: "The new engineer ships their first feature within 30 days. 60%.",
-    },
-    {
-      tag: "product",
-      text: "Conversion on the new pricing page beats the old one. 55%.",
-    },
-    {
-      tag: "personal",
-      text: "I keep my morning workout streak through the month. 40%.",
-    },
-  ];
-  return (
-    <div className="mt-10">
-      <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
-        Examples
-      </p>
-      <div className="mt-3 grid sm:grid-cols-2 gap-3">
-        {examples.map((e) => (
-          <div
-            key={e.text}
-            className="rounded-xl border border-border bg-background/60 p-4"
-          >
-            <Badge variant="muted" className="mb-2">
-              {e.tag}
-            </Badge>
-            <p className="text-sm text-foreground/85 leading-snug">{e.text}</p>
-          </div>
-        ))}
       </div>
     </div>
   );

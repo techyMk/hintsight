@@ -109,8 +109,22 @@ export function QuickLogForm({
     setApplied(true);
   }
 
+  function applyStarter(starter: {
+    text: string;
+    confidence: number;
+    category: string;
+  }) {
+    setText(starter.text);
+    setConfidence(starter.confidence);
+    setCategory(starter.category);
+    setSuggestion(null);
+    setApplied(false);
+  }
+
   return (
     <form action={formAction} className="space-y-7">
+      {text.length === 0 && <StarterPack onPick={applyStarter} />}
+
       {/* Prediction text */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
@@ -357,5 +371,73 @@ function Pill({
         {value}
       </span>
     </Badge>
+  );
+}
+
+const STARTERS: {
+  text: string;
+  confidence: number;
+  category: string;
+}[] = [
+  {
+    text: "This client signs the contract by Friday.",
+    confidence: 70,
+    category: "deals",
+  },
+  {
+    text: "The new hire ships their first feature within 30 days.",
+    confidence: 75,
+    category: "hiring",
+  },
+  {
+    text: "We close the seed round before the end of next month.",
+    confidence: 60,
+    category: "finance",
+  },
+  {
+    text: "I keep my morning workout streak through the month.",
+    confidence: 45,
+    category: "personal",
+  },
+  {
+    text: "The redesign ships before quarter-end.",
+    confidence: 55,
+    category: "product",
+  },
+];
+
+function StarterPack({
+  onPick,
+}: {
+  onPick: (starter: { text: string; confidence: number; category: string }) => void;
+}) {
+  return (
+    <div className="rounded-xl border border-dashed border-border bg-muted/30 p-4 -mt-2">
+      <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">
+        Or start from a template
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {STARTERS.map((s) => (
+          <button
+            key={s.text}
+            type="button"
+            onClick={() => onPick(s)}
+            className="group text-left rounded-lg border border-border bg-background hover:border-foreground/30 hover:bg-card transition-colors px-3 py-2 max-w-full"
+          >
+            <div className="flex items-center gap-1.5 mb-1">
+              <Badge variant="muted" className="text-[10px]">
+                {s.category}
+              </Badge>
+              <span className="text-[10px] font-mono text-muted-foreground tabular-nums">
+                {s.confidence}%
+              </span>
+            </div>
+            <p className="text-xs text-foreground/85 leading-snug line-clamp-1 group-hover:text-foreground">
+              {s.text}
+            </p>
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
