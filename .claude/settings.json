@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/shoba/.claude/projects/c--Users-shoba-OneDrive-Documents-hintsight/**)",
+      "Bash(xargs grep *)",
+      "Bash(npx tsc *)",
+      "Bash(npx eslint *)",
+      "Bash(npm run *)",
+      "Bash(npm install *)"
+    ]
+  }
+}
