@@ -42,10 +42,10 @@ function Nav() {
             Why it&apos;s different
           </Link>
           <Link
-            href="#preview"
+            href="/docs"
             className="px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
           >
-            Preview
+            Docs
           </Link>
         </nav>
         <div className="flex items-center gap-2">
@@ -89,7 +89,7 @@ function Hero() {
           </Badge>
 
           <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight text-foreground leading-[0.98] text-balance">
-            A fitness tracker
+            A scoreboard
             <br />
             for your{" "}
             <span className="italic font-serif font-normal text-brand">
@@ -137,7 +137,7 @@ function Hero() {
           </div>
 
           <p className="mt-6 text-xs font-mono uppercase tracking-widest text-muted-foreground/70">
-            Free for the first 100 predictions · No credit card
+            Free, forever · No credit card · Open source
           </p>
         </div>
 
@@ -512,7 +512,7 @@ function CTA() {
           is.
         </h2>
         <p className="mt-5 text-lg text-muted-foreground">
-          Start measuring it. Free for the first 100 predictions.
+          Start measuring it. Free, forever.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row justify-center gap-3">
           <Show when="signed-out">
@@ -557,15 +557,15 @@ function Footer() {
         <div>
           <Wordmark className="text-foreground" />
           <p className="mt-2 text-sm text-muted-foreground max-w-xs">
-            A fitness tracker for your judgment.
+            A scoreboard for your judgment.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-6 text-sm">
           <Link href="#how" className="text-muted-foreground hover:text-foreground">
             How it works
           </Link>
-          <Link href="#why" className="text-muted-foreground hover:text-foreground">
-            Why it&apos;s different
+          <Link href="/docs" className="text-muted-foreground hover:text-foreground">
+            Docs
           </Link>
           <a
             href="https://github.com/techyMk"

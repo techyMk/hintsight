@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 import { Wordmark } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
@@ -14,11 +16,14 @@ import {
   PlusIcon,
 } from "@/components/app/icons";
 
-export default function AppLayout({
+export default async function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { userId } = await auth();
+  if (!userId) redirect("/sign-in");
+
   return (
     <div className="flex flex-col flex-1 bg-background">
       {/* Top header */}
@@ -86,15 +91,21 @@ export default function AppLayout({
               </NavLink>
             </div>
 
-            <div className="mt-6 mx-2 rounded-xl border border-border/80 bg-muted/40 p-4">
+            <Link
+              href="/docs"
+              className="mt-6 mx-2 block rounded-xl border border-border/80 bg-muted/40 p-4 hover:bg-muted/60 transition-colors group"
+            >
               <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
-                Tip
+                New here?
               </p>
               <p className="mt-2 text-sm text-foreground/85 leading-relaxed">
-                Calibration becomes meaningful after 20+ reviewed predictions.
-                One a day for a few weeks is plenty.
+                Read the guide — how to log a useful prediction, what your
+                calibration score means.
               </p>
-            </div>
+              <span className="mt-2 inline-flex items-center text-xs text-foreground font-medium group-hover:underline underline-offset-4">
+                Open docs →
+              </span>
+            </Link>
           </nav>
         </aside>
 

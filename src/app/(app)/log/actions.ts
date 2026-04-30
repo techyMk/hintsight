@@ -2,7 +2,6 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { extractPrediction } from "@/lib/extract";
@@ -10,6 +9,7 @@ import { embed } from "@/lib/embeddings";
 
 export type LogPredictionState = {
   error?: string;
+  ok?: boolean;
 };
 
 export async function logPrediction(
@@ -78,5 +78,5 @@ export async function logPrediction(
 
   revalidatePath("/dashboard");
   revalidatePath("/reviews");
-  redirect("/dashboard");
+  return { ok: true };
 }

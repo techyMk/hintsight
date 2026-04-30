@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { Wordmark } from "@/components/brand/logo";
-import { AuthSidePanel } from "@/components/brand/auth-side-panel";
 
 export default function SignUpLayout({
   children,
@@ -9,20 +8,36 @@ export default function SignUpLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid lg:grid-cols-2 flex-1 min-h-screen w-full">
-      <AuthSidePanel />
-      <main className="relative flex flex-col items-center px-6 py-10 sm:py-16 bg-background">
-        <Link
-          href="/"
-          className="lg:hidden mb-10"
-          aria-label="Hintsight home"
-        >
-          <Wordmark />
-        </Link>
-        <div className="w-full max-w-md flex flex-col items-center my-auto">
-          {children}
+    <div className="relative min-h-screen flex flex-col bg-background overflow-hidden">
+      <div
+        className="absolute inset-0 dot-bg radial-fade opacity-40 pointer-events-none"
+        aria-hidden
+      />
+      <div
+        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full bg-brand/10 blur-3xl pointer-events-none"
+        aria-hidden
+      />
+
+      <header className="relative z-10 w-full">
+        <div className="max-w-md mx-auto px-6 h-16 flex items-center">
+          <Link href="/" aria-label="Hintsight home">
+            <Wordmark />
+          </Link>
         </div>
+      </header>
+
+      <main className="relative z-10 flex-1 w-full flex items-center justify-center px-6 py-8">
+        <div className="w-full max-w-md">{children}</div>
       </main>
+
+      <footer className="relative z-10 w-full">
+        <div className="max-w-md mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
+          <span className="font-mono">© {new Date().getFullYear()} Hintsight</span>
+          <span className="font-mono uppercase tracking-widest">
+            A scoreboard for your judgment
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }

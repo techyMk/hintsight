@@ -1,7 +1,9 @@
 "use client";
 
-import { useActionState, useMemo, useState, useTransition } from "react";
+import { useActionState, useEffect, useMemo, useState, useTransition } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,6 +49,7 @@ export function QuickLogForm({
 }: {
   defaultCheckInDate: string;
 }) {
+  const router = useRouter();
   const [state, formAction, pending] = useActionState(
     logPrediction,
     initialState
@@ -55,6 +58,21 @@ export function QuickLogForm({
   const [text, setText] = useState("");
   const [category, setCategory] = useState("");
   const [checkInDate, setCheckInDate] = useState(defaultCheckInDate);
+
+  useEffect(() => {
+    if (state.ok) {
+      toast.success("Prediction logged.", {
+        description: `You'll see it again on ${new Date(
+          checkInDate
+        ).toLocaleDateString(undefined, {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })}.`,
+      });
+      router.push("/dashboard");
+    }
+  }, [state.ok, checkInDate, router]);
 
   const [suggesting, startSuggest] = useTransition();
   const [suggestion, setSuggestion] = useState<Suggested | null>(null);

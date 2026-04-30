@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
@@ -65,8 +66,17 @@ export function ReviewCard({ prediction }: { prediction: Prediction }) {
       });
       if (result.error) {
         setError(result.error);
+        toast.error("Couldn't save review", { description: result.error });
         return;
       }
+      const copy = {
+        right: "Marked right.",
+        wrong: "Marked wrong.",
+        unclear: "Marked unclear.",
+      } as const;
+      toast.success(copy[outcome], {
+        description: "Calibration updated.",
+      });
       router.refresh();
     });
   }

@@ -3,10 +3,10 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Sparkline } from "@/components/app/sparkline";
 import { CalibrationArc } from "@/components/brand/calibration-arc";
 import { CalibrationChart } from "@/components/app/calibration-chart";
 import { CategoryChart } from "@/components/app/category-chart";
+import { AnimatedNumber } from "@/components/app/animated-number";
 import {
   PlusIcon,
   ArrowRightIcon,
@@ -151,8 +151,7 @@ export default async function DashboardPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <Stat label="Predictions" value={total} hint="all time" tone="default" />
+      <div className="grid grid-cols-3 gap-3">
         <Stat
           label="Pending"
           value={pending}
@@ -257,10 +256,12 @@ function CalibrationCard({
             Calibration
           </p>
           <div className="mt-2 flex items-baseline gap-3">
-            <span className="text-5xl font-semibold tracking-tight tabular-nums">
-              {headline === null ? "—" : (
+            <span className="text-6xl sm:text-7xl font-semibold tracking-tight tabular-nums leading-none">
+              {headline === null ? (
+                "—"
+              ) : (
                 <>
-                  {headline}
+                  <AnimatedNumber value={headline} />
                   <span className="text-brand">%</span>
                 </>
               )}
@@ -392,13 +393,6 @@ function PredictionRowItem({ p }: { p: PredictionRow }) {
   );
 }
 
-const SAMPLE_BY_CATEGORY: { name: string; trend: number[] }[] = [
-  { name: "Hiring", trend: [62, 58, 65, 70, 68, 73, 75, 71, 73, 76, 78, 73] },
-  { name: "Deals", trend: [50, 48, 45, 42, 44, 41, 39, 42, 41, 40, 41, 41] },
-  { name: "Product", trend: [55, 58, 60, 62, 60, 64, 62, 65, 63, 66, 64, 62] },
-  { name: "Personal", trend: [70, 72, 70, 68, 71, 73, 72, 75, 76, 74, 75, 77] },
-];
-
 const PER_CATEGORY_THRESHOLD = 5;
 
 function ByCategoryCard({ byCategory }: { byCategory: CategoryStat[] }) {
@@ -410,17 +404,13 @@ function ByCategoryCard({ byCategory }: { byCategory: CategoryStat[] }) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
-            By category {useReal ? "" : "· sample"}
+            By category
           </p>
           <h3 className="mt-1 text-base font-semibold tracking-tight">
-            {useReal
-              ? "Where your judgment is sharp, where it drifts"
-              : "Where your judgment will land, by category"}
+            Where your judgment is sharp, where it drifts
           </h3>
           <p className="mt-1 text-sm text-muted-foreground max-w-xl">
-            {useReal
-              ? `Showing categories with ${PER_CATEGORY_THRESHOLD}+ reviewed predictions.`
-              : "Real data appears once each category has 5+ reviewed predictions. Below is illustrative."}
+            Categories unlock at {PER_CATEGORY_THRESHOLD}+ reviewed predictions.
           </p>
         </div>
       </div>
@@ -428,23 +418,11 @@ function ByCategoryCard({ byCategory }: { byCategory: CategoryStat[] }) {
         {useReal ? (
           <CategoryChart data={meaningful} />
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 opacity-70">
-            {SAMPLE_BY_CATEGORY.map((c) => (
-              <div
-                key={c.name}
-                className="rounded-xl border border-border bg-background p-4 text-foreground/85"
-              >
-                <div className="flex items-baseline justify-between">
-                  <span className="text-sm font-medium">{c.name}</span>
-                  <span className="font-mono text-sm tabular-nums text-muted-foreground">
-                    {c.trend[c.trend.length - 1]}%
-                  </span>
-                </div>
-                <div className="mt-3">
-                  <Sparkline values={c.trend} />
-                </div>
-              </div>
-            ))}
+          <div className="rounded-xl border border-dashed border-border bg-muted/30 px-5 py-10 text-center">
+            <p className="text-sm text-muted-foreground">
+              No category has 5+ reviewed predictions yet. Keep logging — this
+              chart fills in as outcomes come back.
+            </p>
           </div>
         )}
       </div>

@@ -6,7 +6,8 @@
       "Bash(npx tsc *)",
       "Bash(npx eslint *)",
       "Bash(npm run *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(node -e \"const key='pk_test_c3RlYWR5LWdsaWRlci00Ni5jbGVyay5hY2NvdW50cy5kZXYk'; const part=key.split\\('_'\\).slice\\(2\\).join\\('_'\\); console.log\\('Clerk domain:', Buffer.from\\(part,'base64'\\).toString\\(\\).replace\\(/\\\\$$/,''\\)\\)\")"
     ]
   }
 }

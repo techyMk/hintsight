@@ -8,7 +8,7 @@ This file is the durable handoff record for any Claude Code session opened in th
 
 ## What Hintsight is
 
-**One-liner:** A fitness tracker for your judgment.
+**One-liner:** A scoreboard for your judgment.
 
 **Longer:** Users log a decision or prediction today. After a configurable check-in period (e.g. 30 days), Hintsight surfaces it and asks what really happened. Over time, calibration scores reveal where the user's judgment is sharp and where it drifts.
 
@@ -66,7 +66,7 @@ src/
 │   ├── embeddings.ts               # embed() via HF Inference API (384-dim BGE)
 │   ├── memory.ts                   # searchMemory() — pgvector RPC
 │   └── calibration.ts              # computeCalibration() — accuracy, Brier, bins, by-category
-└── middleware.ts                   # Clerk route protection
+└── middleware.ts                   # Clerk auth-context only — kept as middleware.ts on purpose (see below)
 supabase/migrations/
 ├── 0001_init.sql                   # predictions table + RLS
 └── 0002_memory.sql                 # HNSW index + match_predictions RPC
@@ -74,7 +74,9 @@ scripts/
 └── seed-demo.ts                    # `npm run seed <clerk_user_id>` — demo prediction history
 ```
 
-Routes protected by `middleware.ts`: `/dashboard`, `/log`, `/reviews`, `/memory`, `/settings`.
+**Auth runtime — important constraint.** Next.js 16 deprecated `middleware.ts` in favour of `proxy.ts`, but `proxy.ts` is Node-runtime-only and disallows `export const runtime = 'edge'`. Clerk's `clerkMiddleware()` needs the Edge runtime to attach the auth context — without it, server-side `auth()` returns null even with a valid Clerk session, and protected layouts loop with /sign-in. We keep `middleware.ts` and accept the deprecation warning until Clerk supports Node-runtime proxies. Do NOT rename to `proxy.ts`.
+
+Routes are protected at the **layout level** in [src/app/(app)/layout.tsx](src/app/(app)/layout.tsx) via server-side `auth()` check, NOT inside `middleware.ts`. Calling `auth.protect()` in middleware races Clerk's post-sign-in cookie propagation and creates a redirect loop with /sign-in.
 
 ---
 
