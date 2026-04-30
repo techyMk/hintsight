@@ -159,7 +159,7 @@ export function TryItDemo() {
           className="w-full accent-foreground"
           style={
             {
-              background: `linear-gradient(to right, oklch(0.22 0.02 270) 0%, oklch(0.22 0.02 270) ${confidence}%, oklch(0.92 0.005 250) ${confidence}%, oklch(0.92 0.005 250) 100%)`,
+              background: `linear-gradient(to right, var(--foreground) 0%, var(--foreground) ${confidence}%, var(--input) ${confidence}%, var(--input) 100%)`,
               height: "4px",
               borderRadius: "4px",
               appearance: "none",
