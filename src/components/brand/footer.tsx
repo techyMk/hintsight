@@ -40,9 +40,9 @@ export function Footer() {
             href="https://techymk.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
+            className="font-semibold text-brand underline underline-offset-4 decoration-brand/40 decoration-1 hover:decoration-brand transition-colors"
           >
-            techyMk
+            techyMk ↗
           </a>
         </p>
       </div>
