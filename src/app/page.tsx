@@ -9,7 +9,17 @@ import { Footer } from "@/components/brand/footer";
 import { TryItDemo } from "@/components/landing/try-it-demo";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { PublicNavLink } from "@/components/app/public-nav-link";
+import { PublicMobileNav } from "@/components/app/public-mobile-nav";
+import { PublicAuthMenuButtons } from "@/components/app/public-auth-menu-buttons";
 import { getPublicStats, type PublicStats } from "@/lib/stats";
+
+const LANDING_NAV_ITEMS = [
+  { href: "#try-it", label: "Try it" },
+  { href: "#how", label: "How it works" },
+  { href: "/docs", label: "Docs" },
+  { href: "/changelog", label: "Changelog" },
+  { href: "/about", label: "About" },
+];
 
 const APP_JSON_LD = {
   "@context": "https://schema.org",
@@ -85,7 +95,7 @@ function TryItSection() {
 function Nav() {
   return (
     <header className="w-full border-b border-border/60 bg-background/70 backdrop-blur-md sticky top-0 z-30">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
         <Link href="/" aria-label="Hintsight home">
           <Wordmark />
         </Link>
@@ -99,18 +109,38 @@ function Nav() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Show when="signed-out">
-            <Button render={<Link href="/sign-in" />} nativeButton={false} variant="ghost" size="sm">
+            <Button
+              render={<Link href="/sign-in" />}
+              nativeButton={false}
+              variant="ghost"
+              size="sm"
+              className="hidden md:inline-flex"
+            >
               Sign in
             </Button>
-            <Button render={<Link href="/sign-up" />} nativeButton={false} size="sm">
+            <Button
+              render={<Link href="/sign-up" />}
+              nativeButton={false}
+              size="sm"
+              className="hidden md:inline-flex"
+            >
               Get started
             </Button>
           </Show>
           <Show when="signed-in">
-            <Button render={<Link href="/dashboard" />} nativeButton={false} size="sm">
+            <Button
+              render={<Link href="/dashboard" />}
+              nativeButton={false}
+              size="sm"
+              className="hidden md:inline-flex"
+            >
               Open app
             </Button>
           </Show>
+          <PublicMobileNav
+            items={LANDING_NAV_ITEMS}
+            authChildren={<PublicAuthMenuButtons />}
+          />
         </div>
       </div>
     </header>
