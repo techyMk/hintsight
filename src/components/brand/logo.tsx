@@ -46,7 +46,7 @@ export function Wordmark({ className }: { className?: string }) {
         width={810}
         height={405}
         priority
-        className="h-8 w-auto dark:hidden"
+        className="h-10 w-auto dark:hidden"
       />
       <Image
         src="/Hintsight-logo-dark.svg"
@@ -54,7 +54,7 @@ export function Wordmark({ className }: { className?: string }) {
         width={810}
         height={405}
         priority
-        className="h-8 w-auto hidden dark:block"
+        className="h-10 w-auto hidden dark:block"
       />
     </span>
   );
