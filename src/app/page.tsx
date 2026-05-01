@@ -687,9 +687,7 @@ function CTA() {
     <section className="px-6 py-24 sm:py-32 border-t border-border/60 relative overflow-hidden">
       <div className="absolute inset-0 dot-bg radial-fade opacity-50 pointer-events-none" aria-hidden />
       <div className="relative max-w-2xl mx-auto text-center">
-        <div className="mx-auto size-14 rounded-2xl bg-foreground text-background flex items-center justify-center mb-8">
-          <LogoMark size={28} className="text-background" />
-        </div>
+        <LogoMark size={64} className="mx-auto mb-8" />
         <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground text-balance">
           Stop guessing how good your{" "}
           <span className="italic font-serif font-normal text-brand">

@@ -1,5 +1,11 @@
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
+/**
+ * The square brand mark — used wherever you want just the icon (no
+ * wordmark). Sized via the `className` prop, default ~28px square.
+ */
 export function LogoMark({
   className,
   size = 28,
@@ -8,61 +14,48 @@ export function LogoMark({
   size?: number;
 }) {
   return (
-    <svg
+    <Image
+      src="/Hintsight-icon.svg"
+      alt="Hintsight"
       width={size}
       height={size}
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn("text-foreground", className)}
-      aria-hidden
-    >
-      <rect
-        x="1"
-        y="1"
-        width="30"
-        height="30"
-        rx="9"
-        className="fill-foreground"
-      />
-      <path
-        d="M9 20.5C9 20.5 11.6 14 16 14C20.4 14 23 20.5 23 20.5"
-        className="stroke-background"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <circle
-        cx="16"
-        cy="14"
-        r="2"
-        className="fill-background"
-      />
-      <circle
-        cx="9"
-        cy="20.5"
-        r="1.5"
-        className="fill-background opacity-60"
-      />
-      <circle
-        cx="23"
-        cy="20.5"
-        r="1.5"
-        className="fill-background opacity-60"
-      />
-    </svg>
+      priority
+      className={cn("inline-block", className)}
+    />
   );
 }
 
+/**
+ * The full wordmark logo (icon + "Hintsight" text). Swaps between light
+ * and dark variants automatically based on the active theme. Sized via
+ * height (`h-*` Tailwind classes); width auto-derives from the 2:1 aspect
+ * ratio of the underlying SVG (810×405).
+ */
 export function Wordmark({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 font-semibold tracking-tight text-foreground",
+        "inline-flex items-center select-none",
         className
       )}
+      aria-label="Hintsight"
     >
-      <LogoMark size={22} />
-      <span>Hintsight</span>
+      <Image
+        src="/Hintsight-logo-light.svg"
+        alt="Hintsight"
+        width={810}
+        height={405}
+        priority
+        className="h-8 w-auto dark:hidden"
+      />
+      <Image
+        src="/Hintsight-logo-dark.svg"
+        alt="Hintsight"
+        width={810}
+        height={405}
+        priority
+        className="h-8 w-auto hidden dark:block"
+      />
     </span>
   );
 }
