@@ -155,9 +155,9 @@
        Honors prefers-reduced-motion automatically — Tailwind compiles
        the @media query around the rule. */
     scroll-behavior: smooth;
-    /* Account for the sticky 56px-tall nav so anchored sections aren't
+    /* Account for the sticky 64px-tall nav so anchored sections aren't
        hidden under it. */
-    scroll-padding-top: 4.5rem;
+    scroll-padding-top: 5rem;
   }
   @media (prefers-reduced-motion: reduce) {
     html {

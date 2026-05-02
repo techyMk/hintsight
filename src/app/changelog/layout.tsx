@@ -24,7 +24,7 @@ export default function ChangelogLayout({
   return (
     <div className="flex flex-col flex-1 bg-background">
       <header className="w-full border-b border-border/60 bg-background/80 backdrop-blur-md sticky top-0 z-30">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
           <Link href="/" aria-label="Hintsight home">
             <Wordmark />
           </Link>

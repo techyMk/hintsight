@@ -30,7 +30,7 @@ export default async function AppLayout({
     <div className="flex flex-col flex-1 bg-background">
       {/* Top header */}
       <header className="w-full border-b border-border/60 bg-background/80 backdrop-blur-md sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center" aria-label="Hintsight">
             <Wordmark />
           </Link>

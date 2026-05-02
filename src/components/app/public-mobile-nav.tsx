@@ -114,12 +114,12 @@ export function PublicMobileNav({
             type="button"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
-            className="md:hidden fixed inset-0 top-14 z-20 bg-background/40 backdrop-blur-sm"
+            className="md:hidden fixed inset-0 top-16 z-20 bg-background/40 backdrop-blur-sm"
           />
-          {/* Panel slides down from under the sticky header (h-14 = 56px) */}
+          {/* Panel slides down from under the sticky header (h-16 = 64px) */}
           <div
             id="mobile-nav-panel"
-            className="md:hidden fixed inset-x-0 top-14 z-30 border-b border-border bg-background shadow-[0_8px_30px_-12px_rgba(0,0,0,0.18)]"
+            className="md:hidden fixed inset-x-0 top-16 z-30 border-b border-border bg-background shadow-[0_8px_30px_-12px_rgba(0,0,0,0.18)]"
           >
             <nav className="px-4 py-3 flex flex-col gap-0.5">
               {items.map((item) => {
